@@ -1,0 +1,16 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"6 adc_config.c
+[; ;adc_config.c: 6: void adc_config()
+[v _adc_config `(v ~T0 @X0 1 ef ]
+"7
+[; ;adc_config.c: 7: {
+{
+[e :U _adc_config ]
+[f ]
+"9
+[; ;adc_config.c: 9:     return;
+[e $UE 1  ]
+"10
+[; ;adc_config.c: 10: }
+[e :UE 1 ]
+}

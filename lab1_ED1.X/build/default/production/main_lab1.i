@@ -2643,9 +2643,14 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 34 "main_lab1.c" 2
-# 44 "main_lab1.c"
+
+# 1 "./adc_config.h" 1
+# 14 "./adc_config.h"
+void adc_config(void);
+# 35 "main_lab1.c" 2
+# 45 "main_lab1.c"
 void setup(void);
-# 56 "main_lab1.c"
+# 57 "main_lab1.c"
 void __attribute__((picinterrupt(("")))) isr(void)
 {
 
@@ -2657,6 +2662,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void)
 {
     setup();
+    adc_config();
     while(1)
     {
 

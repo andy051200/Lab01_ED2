@@ -32,6 +32,7 @@ Descripcion:
  -----------------------------------------------------------------------------*/
 #include <xc.h>
 #include <stdint.h>
+#include "adc_config.h"
 
 /*-----------------------------------------------------------------------------
  ------------------------DIRECTIVAS DE COMPILADOR------------------------------
@@ -64,6 +65,7 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main(void)
 {
     setup();
+    adc_config();
     while(1)
     {
         
