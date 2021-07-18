@@ -1,0 +1,16 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"3 multiplexada.c
+[; ;multiplexada.c: 3: void multiplexada()
+[v _multiplexada `(v ~T0 @X0 1 ef ]
+"4
+[; ;multiplexada.c: 4: {
+{
+[e :U _multiplexada ]
+[f ]
+"6
+[; ;multiplexada.c: 6:     return;
+[e $UE 1  ]
+"7
+[; ;multiplexada.c: 7: }
+[e :UE 1 ]
+}

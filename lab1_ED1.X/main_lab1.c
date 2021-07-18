@@ -32,7 +32,8 @@ Descripcion:
  -----------------------------------------------------------------------------*/
 #include <xc.h>
 #include <stdint.h>
-#include "adc_config.h"
+#include "adc_config.h"         //incluyo libreria del adc
+#include "multiplexada.h"       //incluyo libreria de multiplexada
 
 /*-----------------------------------------------------------------------------
  ------------------------DIRECTIVAS DE COMPILADOR------------------------------
@@ -43,7 +44,6 @@ Descripcion:
  ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
  -----------------------------------------------------------------------------*/
 void setup(void);       //prototipo de funcion de configuracion
-
 
 /*-----------------------------------------------------------------------------
  ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
@@ -65,10 +65,9 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main(void)
 {
     setup();
-    adc_config();
     while(1)
     {
-        
+       
     }
 }
 /*-----------------------------------------------------------------------------
@@ -105,6 +104,9 @@ void setup(void)
     WPUBbits.WPUB1 = 1;         // enable Pull-Up de RB1 
     WPUBbits.WPUB2 = 1;         // enable Pull-Up de RB2 
 
+    //importar funcion de configuracion del ADC
+    adc_config();               //se llama funcion
+    multiplexada();
     
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE=1;           //se habilitan las interrupciones globales

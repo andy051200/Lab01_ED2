@@ -17,8 +17,10 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "65
 [v _main main `(v  1 e 1 0 ]
-"77
+"76
 [v _setup setup `(v  1 e 1 0 ]
+"3 C:\Users\Andy Bonilla\Documents\GitHub\ED2\Lab1_ED2\lab1_ED1.X\multiplexada.c
+[v _multiplexada multiplexada `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
@@ -29,7 +31,7 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S140 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S144 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -39,14 +41,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S149 . 1 `uc 1 . 1 0 :2:0 
+[s S153 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S154 . 1 `S140 1 . 1 0 `S149 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES154  1 e 1 @11 ]
-[s S191 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S158 . 1 `S144 1 . 1 0 `S153 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES158  1 e 1 @11 ]
+[s S195 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -55,9 +57,9 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S199 . 1 `S191 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES199  1 e 1 @12 ]
-[s S88 . 1 `uc 1 PS 1 0 :3:0 
+[u S203 . 1 `S195 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES203  1 e 1 @12 ]
+[s S84 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -65,15 +67,15 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S95 . 1 `uc 1 PS0 1 0 :1:0 
+[s S91 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S99 . 1 `S88 1 . 1 0 `S95 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES99  1 e 1 @129 ]
+[u S95 . 1 `S84 1 . 1 0 `S91 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES95  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S33 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S29 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -83,15 +85,15 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S42 . 1 `S33 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES42  1 e 1 @134 ]
+[u S38 . 1 `S29 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES38  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S172 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S176 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -100,26 +102,26 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S180 . 1 `S172 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES180  1 e 1 @140 ]
-[s S62 . 1 `uc 1 SCS 1 0 :1:0 
+[u S184 . 1 `S176 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES184  1 e 1 @140 ]
+[s S58 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S68 . 1 `uc 1 . 1 0 :4:0 
+[s S64 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S73 . 1 `S62 1 . 1 0 `S68 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES73  1 e 1 @143 ]
-[s S114 . 1 `uc 1 WPUB 1 0 :8:0 
+[u S69 . 1 `S58 1 . 1 0 `S64 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES69  1 e 1 @143 ]
+[s S110 . 1 `uc 1 WPUB 1 0 :8:0 
 ]
 "2366
-[s S116 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S112 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -128,8 +130,8 @@
 `uc 1 WPUB6 1 0 :1:6 
 `uc 1 WPUB7 1 0 :1:7 
 ]
-[u S125 . 1 `S114 1 . 1 0 `S116 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES125  1 e 1 @149 ]
+[u S121 . 1 `S110 1 . 1 0 `S112 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES121  1 e 1 @149 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -137,12 +139,17 @@
 "65 C:\Users\Andy Bonilla\Documents\GitHub\ED2\Lab1_ED2\lab1_ED1.X\main_lab1.c
 [v _main main `(v  1 e 1 0 ]
 {
-"73
+"72
 } 0
-"77
+"76
 [v _setup setup `(v  1 e 1 0 ]
 {
-"120
+"122
+} 0
+"3 C:\Users\Andy Bonilla\Documents\GitHub\ED2\Lab1_ED2\lab1_ED1.X\multiplexada.c
+[v _multiplexada multiplexada `(v  1 e 1 0 ]
+{
+"7
 } 0
 "6 C:\Users\Andy Bonilla\Documents\GitHub\ED2\Lab1_ED2\lab1_ED1.X\adc_config.c
 [v _adc_config adc_config `(v  1 e 1 0 ]

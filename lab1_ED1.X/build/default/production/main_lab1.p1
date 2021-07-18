@@ -2,12 +2,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 [p mainexit ]
-"45 main_lab1.c
-[; ;main_lab1.c: 45: void setup(void);
+"46 main_lab1.c
+[; ;main_lab1.c: 46: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
-"14 ./adc_config.h
-[; ;./adc_config.h: 14: void adc_config(void);
-[v _adc_config `(v ~T0 @X0 0 ef ]
 "3387 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
@@ -97,7 +94,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2366
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2366: extern volatile WPUBbits_t WPUBbits __attribute__((address(0x095)));
 [v _WPUBbits `VS89 ~T0 @X0 0 e@149 ]
-"465
+"14 ./adc_config.h
+[; ;./adc_config.h: 14: void adc_config(void);
+[v _adc_config `(v ~T0 @X0 0 ef ]
+"11 ./multiplexada.h
+[; ;./multiplexada.h: 11: void multiplexada();
+[v _multiplexada `(v ~T0 @X0 0 e? ]
+"465 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 465:     struct {
 [s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S16 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
@@ -418,120 +421,123 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_lab1.c: 67:     setup();
 [e ( _setup ..  ]
 "68
-[; ;main_lab1.c: 68:     adc_config();
-[e ( _adc_config ..  ]
-"69
-[; ;main_lab1.c: 69:     while(1)
+[; ;main_lab1.c: 68:     while(1)
 [e :U 141 ]
-"70
-[; ;main_lab1.c: 70:     {
+"69
+[; ;main_lab1.c: 69:     {
 {
-"72
-[; ;main_lab1.c: 72:     }
+"71
+[; ;main_lab1.c: 71:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"73
-[; ;main_lab1.c: 73: }
+"72
+[; ;main_lab1.c: 72: }
 [e :UE 139 ]
 }
-"77
-[; ;main_lab1.c: 77: void setup(void)
+"76
+[; ;main_lab1.c: 76: void setup(void)
 [v _setup `(v ~T0 @X0 1 ef ]
-"78
-[; ;main_lab1.c: 78: {
+"77
+[; ;main_lab1.c: 77: {
 {
 [e :U _setup ]
 [f ]
-"80
-[; ;main_lab1.c: 80:     ANSEL=0;
+"79
+[; ;main_lab1.c: 79:     ANSEL=0;
 [e = _ANSEL -> -> 0 `i `uc ]
-"81
-[; ;main_lab1.c: 81:     ANSELH=0;
+"80
+[; ;main_lab1.c: 80:     ANSELH=0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"84
-[; ;main_lab1.c: 84:     TRISA=0;
+"83
+[; ;main_lab1.c: 83:     TRISA=0;
 [e = _TRISA -> -> 0 `i `uc ]
-"85
-[; ;main_lab1.c: 85:     TRISBbits.TRISB0=1;
+"84
+[; ;main_lab1.c: 84:     TRISBbits.TRISB0=1;
 [e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
-"86
-[; ;main_lab1.c: 86:     TRISBbits.TRISB1=1;
+"85
+[; ;main_lab1.c: 85:     TRISBbits.TRISB1=1;
 [e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
-"87
-[; ;main_lab1.c: 87:     TRISBbits.TRISB2=1;
+"86
+[; ;main_lab1.c: 86:     TRISBbits.TRISB2=1;
 [e = . . _TRISBbits 0 2 -> -> 1 `i `uc ]
-"88
-[; ;main_lab1.c: 88:     TRISC=0;
+"87
+[; ;main_lab1.c: 87:     TRISC=0;
 [e = _TRISC -> -> 0 `i `uc ]
-"89
-[; ;main_lab1.c: 89:     TRISD=0;
+"88
+[; ;main_lab1.c: 88:     TRISD=0;
 [e = _TRISD -> -> 0 `i `uc ]
-"90
-[; ;main_lab1.c: 90:     TRISE=0;
+"89
+[; ;main_lab1.c: 89:     TRISE=0;
 [e = _TRISE -> -> 0 `i `uc ]
-"92
-[; ;main_lab1.c: 92:     PORTA=0;
+"91
+[; ;main_lab1.c: 91:     PORTA=0;
 [e = _PORTA -> -> 0 `i `uc ]
-"93
-[; ;main_lab1.c: 93:     PORTB=0;
+"92
+[; ;main_lab1.c: 92:     PORTB=0;
 [e = _PORTB -> -> 0 `i `uc ]
-"94
-[; ;main_lab1.c: 94:     PORTC=0;
+"93
+[; ;main_lab1.c: 93:     PORTC=0;
 [e = _PORTC -> -> 0 `i `uc ]
-"95
-[; ;main_lab1.c: 95:     PORTD=0;
+"94
+[; ;main_lab1.c: 94:     PORTD=0;
 [e = _PORTD -> -> 0 `i `uc ]
-"96
-[; ;main_lab1.c: 96:     PORTE=0;
+"95
+[; ;main_lab1.c: 95:     PORTE=0;
 [e = _PORTE -> -> 0 `i `uc ]
-"99
-[; ;main_lab1.c: 99:     OSCCONbits.IRCF = 0b110;
+"98
+[; ;main_lab1.c: 98:     OSCCONbits.IRCF = 0b110;
 [e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
-"100
-[; ;main_lab1.c: 100:     OSCCONbits.SCS = 1;
+"99
+[; ;main_lab1.c: 99:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"103
-[; ;main_lab1.c: 103:     OPTION_REGbits.nRBPU = 0;
+"102
+[; ;main_lab1.c: 102:     OPTION_REGbits.nRBPU = 0;
 [e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
-"104
-[; ;main_lab1.c: 104:     WPUBbits.WPUB0 = 1;
+"103
+[; ;main_lab1.c: 103:     WPUBbits.WPUB0 = 1;
 [e = . . _WPUBbits 1 0 -> -> 1 `i `uc ]
-"105
-[; ;main_lab1.c: 105:     WPUBbits.WPUB1 = 1;
+"104
+[; ;main_lab1.c: 104:     WPUBbits.WPUB1 = 1;
 [e = . . _WPUBbits 1 1 -> -> 1 `i `uc ]
-"106
-[; ;main_lab1.c: 106:     WPUBbits.WPUB2 = 1;
+"105
+[; ;main_lab1.c: 105:     WPUBbits.WPUB2 = 1;
 [e = . . _WPUBbits 1 2 -> -> 1 `i `uc ]
-"110
-[; ;main_lab1.c: 110:     INTCONbits.GIE=1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"111
-[; ;main_lab1.c: 111:     INTCONbits.T0IE=1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+"108
+[; ;main_lab1.c: 108:     adc_config();
+[e ( _adc_config ..  ]
+"109
+[; ;main_lab1.c: 109:     multiplexada();
+[e ( _multiplexada ..  ]
 "112
-[; ;main_lab1.c: 112:     INTCONbits.TMR0IF=0;
-[e = . . _INTCONbits 1 1 -> -> 0 `i `uc ]
+[; ;main_lab1.c: 112:     INTCONbits.GIE=1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "113
-[; ;main_lab1.c: 113:     INTCONbits.TMR0IE=1;
-[e = . . _INTCONbits 1 3 -> -> 1 `i `uc ]
+[; ;main_lab1.c: 113:     INTCONbits.T0IE=1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "114
-[; ;main_lab1.c: 114:     INTCONbits.RBIE=1;
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main_lab1.c: 114:     INTCONbits.TMR0IF=0;
+[e = . . _INTCONbits 1 1 -> -> 0 `i `uc ]
 "115
-[; ;main_lab1.c: 115:     INTCONbits.RBIF=0;
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;main_lab1.c: 115:     INTCONbits.TMR0IE=1;
+[e = . . _INTCONbits 1 3 -> -> 1 `i `uc ]
 "116
-[; ;main_lab1.c: 116:     PIE1bits.TMR1IE=1;
-[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
+[; ;main_lab1.c: 116:     INTCONbits.RBIE=1;
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
 "117
-[; ;main_lab1.c: 117:     PIR1bits.TMR1IF=0;
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main_lab1.c: 117:     INTCONbits.RBIF=0;
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"118
+[; ;main_lab1.c: 118:     PIE1bits.TMR1IE=1;
+[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
 "119
-[; ;main_lab1.c: 119:     return;
+[; ;main_lab1.c: 119:     PIR1bits.TMR1IF=0;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+"121
+[; ;main_lab1.c: 121:     return;
 [e $UE 143  ]
-"120
-[; ;main_lab1.c: 120: }
+"122
+[; ;main_lab1.c: 122: }
 [e :UE 143 ]
 }

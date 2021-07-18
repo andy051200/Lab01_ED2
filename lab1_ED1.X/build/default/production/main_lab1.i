@@ -2648,7 +2648,12 @@ typedef uint16_t uintptr_t;
 # 14 "./adc_config.h"
 void adc_config(void);
 # 35 "main_lab1.c" 2
-# 45 "main_lab1.c"
+
+# 1 "./multiplexada.h" 1
+# 11 "./multiplexada.h"
+void multiplexada();
+# 36 "main_lab1.c" 2
+# 46 "main_lab1.c"
 void setup(void);
 # 57 "main_lab1.c"
 void __attribute__((picinterrupt(("")))) isr(void)
@@ -2662,7 +2667,6 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void)
 {
     setup();
-    adc_config();
     while(1)
     {
 
@@ -2702,6 +2706,9 @@ void setup(void)
     WPUBbits.WPUB1 = 1;
     WPUBbits.WPUB2 = 1;
 
+
+    adc_config();
+    multiplexada();
 
 
     INTCONbits.GIE=1;
