@@ -8,7 +8,11 @@
 //#ifndef MULTIPLEXADA_H
 #define	MULTIPLEXADA_H
 
-void multiplexada();
+/*-----------------------------------------------------------------------------
+----------- prototipo de funcion de configuracion de displays -----------------
+-----------------------------------------------------------------------------*/
+void multiplexada(uint8_t numero);
+
 
 
 
@@ -24,4 +28,4 @@ extern "C" {
 }
 #endif
 
-#endif	/* MULTIPLEXADA_H */
+#endif	MULTIPLEXADA_H */

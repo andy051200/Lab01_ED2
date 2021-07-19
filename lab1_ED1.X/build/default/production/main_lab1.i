@@ -2644,21 +2644,70 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 # 34 "main_lab1.c" 2
 
+
 # 1 "./adc_config.h" 1
 # 14 "./adc_config.h"
 void adc_config(void);
-# 35 "main_lab1.c" 2
+# 36 "main_lab1.c" 2
 
 # 1 "./multiplexada.h" 1
-# 11 "./multiplexada.h"
-void multiplexada();
-# 36 "main_lab1.c" 2
-# 46 "main_lab1.c"
+# 14 "./multiplexada.h"
+void multiplexada(uint8_t numero);
+# 37 "main_lab1.c" 2
+# 47 "main_lab1.c"
 void setup(void);
-# 57 "main_lab1.c"
+void botones(void);
+void transistores(void);
+
+
+
+
+unsigned char antirrebote1=0;
+unsigned char antirrebote2=0;
+unsigned char multiplex=0;
+unsigned int a,b,c ;
+unsigned int conversion;
+
+
+
+
 void __attribute__((picinterrupt(("")))) isr(void)
 {
 
+    if (INTCONbits.T0IF)
+    {
+        multiplex++;
+        INTCONbits.T0IF=0;
+    }
+
+
+    if (INTCONbits.RBIF)
+    {
+        switch(PORTB)
+        {
+            case(0b11111110):
+                antirrebote1=1;
+                break;
+
+            case(0b11111101):
+                antirrebote2=1;
+                break;
+
+            default:
+                antirrebote1=0;
+                antirrebote2=0;
+                break;
+        }
+        INTCONbits.RBIF=0;
+    }
+
+
+    if (PIR1bits.ADIF==1)
+    {
+        conversion=ADRESH;
+        ADCON0bits.GO = 1;
+        PIR1bits.ADIF=0;
+    }
 }
 
 
@@ -2667,8 +2716,26 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void)
 {
     setup();
+    _delay((unsigned long)((20)*(4000000/4000.0)));
+    ADCON0bits.GO = 1;
+
     while(1)
     {
+
+        transistores();
+        botones();
+
+
+        a = ((conversion/100)%10) ;
+        b = ((conversion/10)%10) ;
+        c = (conversion%10) ;
+
+
+        if (PORTC==conversion)
+            PORTDbits.RD7=1;
+        else
+            PORTDbits.RD7=0;
+
 
     }
 }
@@ -2680,12 +2747,15 @@ void setup(void)
 
     ANSEL=0;
     ANSELH=0;
+    ANSELbits.ANS0=1;
 
 
-    TRISA=0;
+    TRISAbits.TRISA0=1;
+    TRISAbits.TRISA0=0;
+
     TRISBbits.TRISB0=1;
     TRISBbits.TRISB1=1;
-    TRISBbits.TRISB2=1;
+
     TRISC=0;
     TRISD=0;
     TRISE=0;
@@ -2701,6 +2771,15 @@ void setup(void)
     OSCCONbits.SCS = 1;
 
 
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.T0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 5;
+
+
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
@@ -2708,17 +2787,68 @@ void setup(void)
 
 
     adc_config();
-    multiplexada();
 
 
     INTCONbits.GIE=1;
     INTCONbits.T0IE=1;
-    INTCONbits.TMR0IF=0;
-    INTCONbits.TMR0IE=1;
+    INTCONbits.T0IF=0;
     INTCONbits.RBIE=1;
     INTCONbits.RBIF=0;
     PIE1bits.TMR1IE=1;
     PIR1bits.TMR1IF=0;
 
+    PIE1bits.ADIE = 1 ;
+    PIR1bits.ADIF = 0;
+
+    IOCBbits.IOCB0=1;
+    IOCBbits.IOCB1=1;
+    return;
+}
+
+
+
+
+
+
+void botones(void)
+{
+
+    if (antirrebote1==1 && PORTBbits.RB0==1)
+        PORTC++;
+
+
+    if (antirrebote2==1 && PORTBbits.RB1==1)
+        PORTC--;
+
+    return;
+}
+
+
+void transistores(void)
+{
+    switch(multiplex)
+    {
+        case(1):
+            multiplexada(a);
+            PORTEbits.RE0=1;
+            PORTEbits.RE1=0;
+            PORTEbits.RE2=0;
+            break;
+        case(2):
+            multiplexada(b);
+            PORTEbits.RE0=0;
+            PORTEbits.RE1=1;
+            PORTEbits.RE2=0;
+            break;
+        case(3):
+            multiplexada(c);
+            PORTEbits.RE0=0;
+            PORTEbits.RE1=0;
+            PORTEbits.RE2=1;
+            break;
+        case(4):
+            multiplex=0;
+            break;
+    }
     return;
 }
