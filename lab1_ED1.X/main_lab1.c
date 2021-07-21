@@ -54,7 +54,10 @@ void transistores(void);    //protoripo de funcion de transistores
 unsigned char antirrebote1=0; //variable de antirrebote para boton SUMA
 unsigned char antirrebote2=0; //variable de antirrebote para boton RESTA
 unsigned char multiplex=0;
-unsigned int a,b,c ; //a para centenas, b para decenas, c para unidades
+unsigned char display1;
+unsigned char display2;
+
+//unsigned char a,b,c ; //a para centenas, b para decenas, c para unidades
 unsigned int conversion;
 
 /*-----------------------------------------------------------------------------
@@ -115,16 +118,16 @@ void main(void)
         botones();      //llamo funcion para los botones de suma y resta
         
         //-----DIVISION DE DIGITOS PARA DISPLAYS 7 SEGMENTOS
-        a = ((conversion/100)%10) ; // valor del contador lo divide en centenas
-        b = ((conversion/10)%10) ;  // valor del contador lo divide en decenas
-        c = (conversion%10) ;        // valor del contador en unidades
+        display1 = ADRESH & 0x0f;
+        display2 = ADRESH & 0xf0;
+        display2 = display2 >> 4;
+        
         
         //-----LED DE ADVERTENCIA DE IGUALDAD
-        if (PORTC==conversion)
+        if (PORTC==ADRESH)
             PORTDbits.RD7=1;
         else
             PORTDbits.RD7=0;
-        
         
     }
 }
@@ -166,7 +169,7 @@ void setup(void)
     OPTION_REGbits.PS2 = 1;   // bits 2-0  PS2:PS0: Prescaler Rate Select bits
     OPTION_REGbits.PS1 = 1;
     OPTION_REGbits.PS0 = 1;
-    TMR0 = 5;             // preset for timer register
+    TMR0 = 255;             // preset for timer register
 
     //WEAK PULL UPs PORTB
     OPTION_REGbits.nRBPU = 0;   // enable Individual pull-ups
@@ -183,8 +186,6 @@ void setup(void)
     INTCONbits.T0IF=0;        //se apaga la bandera de int timer0
     INTCONbits.RBIE=1;          // se habilita IntOnChange
     INTCONbits.RBIF=0;          // se apaga la bandera de IntOnChangeB  
-    PIE1bits.TMR1IE=1;          // se enciende enable de Int Timer1
-    PIR1bits.TMR1IF=0;          //se apaga bandera Timer1
     //CONFIGURACION INTERRUPCION DEL ADC
     PIE1bits.ADIE = 1 ; //se prende interrupcion por ADC
     PIR1bits.ADIF = 0; // se baja bandera de conversion
@@ -202,12 +203,17 @@ void setup(void)
 void botones(void)
 {
     //-----antirrebote boton SUMA
-    if (antirrebote1==1 && PORTBbits.RB0==1) 
+    if (antirrebote1==1 && PORTBbits.RB0==0)
+    {
         PORTC++;
-        
+        antirrebote1=0;
+    }
     //-----antirrebote boton RESTA
-    if (antirrebote2==1 && PORTBbits.RB1==1)
+    if (antirrebote2==1 && PORTBbits.RB1==0)
+    {
         PORTC--;
+        antirrebote2=0;
+    }
     
     return;
 }
@@ -218,24 +224,18 @@ void transistores(void)
     switch(multiplex)
     {
         case(1):
-            multiplexada(a);
+            multiplexada(display1);
             PORTEbits.RE0=1;    //se prende transistor 1
             PORTEbits.RE1=0;    //se apaga transistor 2
             PORTEbits.RE2=0;    //se apaga transistor 3
             break;
         case(2):
-            multiplexada(b);
+            multiplexada(display2);
             PORTEbits.RE0=0;    //se prende transistor 1
             PORTEbits.RE1=1;    //se apaga transistor 2
             PORTEbits.RE2=0;    //se apaga transistor 3
             break;
         case(3):
-            multiplexada(c);
-            PORTEbits.RE0=0;    //se prende transistor 1
-            PORTEbits.RE1=0;    //se apaga transistor 2
-            PORTEbits.RE2=1;    //se apaga transistor 3
-            break;
-        case(4):
             multiplex=0;
             break;       
     }

@@ -2652,7 +2652,7 @@ void adc_config(void);
 
 # 1 "./multiplexada.h" 1
 # 14 "./multiplexada.h"
-void multiplexada(uint8_t numero);
+void multiplexada(unsigned char numero);
 # 37 "main_lab1.c" 2
 # 47 "main_lab1.c"
 void setup(void);
@@ -2665,7 +2665,10 @@ void transistores(void);
 unsigned char antirrebote1=0;
 unsigned char antirrebote2=0;
 unsigned char multiplex=0;
-unsigned int a,b,c ;
+unsigned char display1;
+unsigned char display2;
+
+
 unsigned int conversion;
 
 
@@ -2726,16 +2729,16 @@ void main(void)
         botones();
 
 
-        a = ((conversion/100)%10) ;
-        b = ((conversion/10)%10) ;
-        c = (conversion%10) ;
+        display1 = ADRESH & 0x0f;
+        display2 = ADRESH & 0xf0;
+        display2 = display2 >> 4;
 
 
-        if (PORTC==conversion)
+
+        if (PORTC==ADRESH)
             PORTDbits.RD7=1;
         else
             PORTDbits.RD7=0;
-
 
     }
 }
@@ -2777,7 +2780,7 @@ void setup(void)
     OPTION_REGbits.PS2 = 1;
     OPTION_REGbits.PS1 = 1;
     OPTION_REGbits.PS0 = 1;
-    TMR0 = 5;
+    TMR0 = 255;
 
 
     OPTION_REGbits.nRBPU = 0;
@@ -2794,8 +2797,6 @@ void setup(void)
     INTCONbits.T0IF=0;
     INTCONbits.RBIE=1;
     INTCONbits.RBIF=0;
-    PIE1bits.TMR1IE=1;
-    PIR1bits.TMR1IF=0;
 
     PIE1bits.ADIE = 1 ;
     PIR1bits.ADIF = 0;
@@ -2813,12 +2814,17 @@ void setup(void)
 void botones(void)
 {
 
-    if (antirrebote1==1 && PORTBbits.RB0==1)
+    if (antirrebote1==1 && PORTBbits.RB0==0)
+    {
         PORTC++;
+        antirrebote1=0;
+    }
 
-
-    if (antirrebote2==1 && PORTBbits.RB1==1)
+    if (antirrebote2==1 && PORTBbits.RB1==0)
+    {
         PORTC--;
+        antirrebote2=0;
+    }
 
     return;
 }
@@ -2829,24 +2835,18 @@ void transistores(void)
     switch(multiplex)
     {
         case(1):
-            multiplexada(a);
+            multiplexada(display1);
             PORTEbits.RE0=1;
             PORTEbits.RE1=0;
             PORTEbits.RE2=0;
             break;
         case(2):
-            multiplexada(b);
+            multiplexada(display2);
             PORTEbits.RE0=0;
             PORTEbits.RE1=1;
             PORTEbits.RE2=0;
             break;
         case(3):
-            multiplexada(c);
-            PORTEbits.RE0=0;
-            PORTEbits.RE1=0;
-            PORTEbits.RE2=1;
-            break;
-        case(4):
             multiplex=0;
             break;
     }

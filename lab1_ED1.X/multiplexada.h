@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------
 ----------- prototipo de funcion de configuracion de displays -----------------
 -----------------------------------------------------------------------------*/
-void multiplexada(uint8_t numero);
+void multiplexada(unsigned char numero);
 
 
 

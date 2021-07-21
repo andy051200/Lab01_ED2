@@ -237,14 +237,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "24 multiplexada.c
-[; ;multiplexada.c: 24: void multiplexada(uint8_t numero)
+[; ;multiplexada.c: 24: void multiplexada(unsigned char numero)
 [v _multiplexada `(v ~T0 @X0 1 ef1`uc ]
 "25
 [; ;multiplexada.c: 25: {
 {
 [e :U _multiplexada ]
 "24
-[; ;multiplexada.c: 24: void multiplexada(uint8_t numero)
+[; ;multiplexada.c: 24: void multiplexada(unsigned char numero)
 [v _numero `uc ~T0 @X0 1 r1 ]
 "25
 [; ;multiplexada.c: 25: {
@@ -259,8 +259,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;multiplexada.c: 28:         case(0):
 [e :U 141 ]
 "29
-[; ;multiplexada.c: 29:             PORTD=0b00111111;
-[e = _PORTD -> -> 63 `i `uc ]
+[; ;multiplexada.c: 29:             PORTD=0b10111111;
+[e = _PORTD -> -> 191 `i `uc ]
 "30
 [; ;multiplexada.c: 30:             break;
 [e $U 139  ]
@@ -346,7 +346,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;multiplexada.c: 66:             break;
 [e $U 139  ]
 "68
-[; ;multiplexada.c: 68:     }
+[; ;multiplexada.c: 68:         case(10):
+[e :U 151 ]
+"69
+[; ;multiplexada.c: 69:             PORTD=0b01110111;
+[e = _PORTD -> -> 119 `i `uc ]
+"70
+[; ;multiplexada.c: 70:             break;
+[e $U 139  ]
+"72
+[; ;multiplexada.c: 72:         case(11):
+[e :U 152 ]
+"73
+[; ;multiplexada.c: 73:             PORTD=0b01111100;
+[e = _PORTD -> -> 124 `i `uc ]
+"74
+[; ;multiplexada.c: 74:             break;
+[e $U 139  ]
+"76
+[; ;multiplexada.c: 76:         case(12):
+[e :U 153 ]
+"77
+[; ;multiplexada.c: 77:             PORTD=0b00111001;
+[e = _PORTD -> -> 57 `i `uc ]
+"78
+[; ;multiplexada.c: 78:             break;
+[e $U 139  ]
+"80
+[; ;multiplexada.c: 80:         case(13):
+[e :U 154 ]
+"81
+[; ;multiplexada.c: 81:             PORTD=0b01011110;
+[e = _PORTD -> -> 94 `i `uc ]
+"82
+[; ;multiplexada.c: 82:             break;
+[e $U 139  ]
+"84
+[; ;multiplexada.c: 84:         case(14):
+[e :U 155 ]
+"85
+[; ;multiplexada.c: 85:             PORTD=0b01111001;
+[e = _PORTD -> -> 121 `i `uc ]
+"86
+[; ;multiplexada.c: 86:             break;
+[e $U 139  ]
+"88
+[; ;multiplexada.c: 88:         case(15):
+[e :U 156 ]
+"89
+[; ;multiplexada.c: 89:             PORTD=0b01110001;
+[e = _PORTD -> -> 113 `i `uc ]
+"90
+[; ;multiplexada.c: 90:             break;
+[e $U 139  ]
+"92
+[; ;multiplexada.c: 92:     }
 }
 [e $U 139  ]
 [e :U 140 ]
@@ -360,9 +414,18 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 7 `i 148
  , $ -> 8 `i 149
  , $ -> 9 `i 150
+ , $ -> 10 `i 151
+ , $ -> 11 `i 152
+ , $ -> 12 `i 153
+ , $ -> 13 `i 154
+ , $ -> 14 `i 155
+ , $ -> 15 `i 156
  139 ]
 [e :U 139 ]
-"69
-[; ;multiplexada.c: 69: }
+"93
+[; ;multiplexada.c: 93:     return;
+[e $UE 138  ]
+"94
+[; ;multiplexada.c: 94: }
 [e :UE 138 ]
 }

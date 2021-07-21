@@ -2628,15 +2628,15 @@ typedef uint16_t uintptr_t;
 
 # 1 "./multiplexada.h" 1
 # 14 "./multiplexada.h"
-void multiplexada(uint8_t numero);
+void multiplexada(unsigned char numero);
 # 14 "multiplexada.c" 2
 # 24 "multiplexada.c"
-void multiplexada(uint8_t numero)
+void multiplexada(unsigned char numero)
 {
     switch(numero)
     {
         case(0):
-            PORTD=0b00111111;
+            PORTD=0b10111111;
             break;
 
         case(1):
@@ -2675,5 +2675,30 @@ void multiplexada(uint8_t numero)
             PORTD=0b01101111;
             break;
 
+        case(10):
+            PORTD=0b01110111;
+            break;
+
+        case(11):
+            PORTD=0b01111100;
+            break;
+
+        case(12):
+            PORTD=0b00111001;
+            break;
+
+        case(13):
+            PORTD=0b01011110;
+            break;
+
+        case(14):
+            PORTD=0b01111001;
+            break;
+
+        case(15):
+            PORTD=0b01110001;
+            break;
+
     }
+    return;
 }
